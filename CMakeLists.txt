@@ -4,13 +4,15 @@ project(pendulum_raylib C)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/..)
 
-include(FetchContent)
-set(BUILD_SHARED_LIBS OFF)
-FetchContent_Declare(
-    raylib
-    GIT_REPOSITORY https://github.com/raysan5/raylib.git
-    GIT_TAG 5.0
-)
-FetchContent_MakeAvailable(raylib)
+find_package(raylib CONFIG QUIET)
+if(NOT raylib_FOUND)
+    message("Downloading raylib from git... (This part may take ~1-2 minutes depending on internet speed)")
+    include(FetchContent)
+    FetchContent_Declare(
+        raylib
+        URL https://github.com/raysan5/raylib/archive/refs/tags/5.5.zip
+    )
+    FetchContent_MakeAvailable(raylib) 
+endif()
 
 add_subdirectory(src)
