@@ -8,6 +8,8 @@
 #define SCREEN_HEIGHT 780
 #define TARGET_FPS 60
 
+extern Circle* lastCircle;
+
 void InitGame(void);
 void DrawGame(void);
 void UpdateGame(void);

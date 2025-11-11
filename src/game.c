@@ -5,25 +5,31 @@
 #include "circle.h"
 #include "random.h"
 
-Circle centerCircle;
+Circle* headCircle;
+Circle* lastCircle;
+bool isLinesActive = 1;
 
 void InitGame(void)
 {
     InitRandomSeed();
-    centerCircle = (Circle){(Vector2){SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2}, 10, BLACK, 0, NULL}; // Creates the head
+    headCircle = (Circle*)malloc(sizeof(Circle));
+    lastCircle = headCircle;
+    *headCircle = (Circle){(Vector2){SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2}, 10, BLACK, 0, NULL}; // Creates the head
 }
 
 void DrawGame(void)
 {
     ClearBackground(RAYWHITE);
-    // Draw circles starting from head (center circle)
+    
 }
 
 void UpdateGame(void)
 {
     if (IsKeyPressed(KEY_A))
     {
-        printf("%f", RandomFloat(-10, 10));
-        // Create a new circle and link the previous one to that
+        Circle* newCircle = (Circle*)malloc(sizeof(Circle));
+        lastCircle->next = newCircle;
+        lastCircle = newCircle;
+        *newCircle = (Circle){(Vector2){SCREEN_WIDTH / 2, lastCircle->center.y + RandomFloat(-55, 55)}, RandomFloat(5, 20), RED, RandomFloat(-180, 180) * DEG2RAD, NULL};
     }
 }

@@ -2,23 +2,22 @@
 #define CIRCLE_H
 
 #include <raylib.h>
+#include <raymath.h>
 
 typedef struct Circle {
     Vector2 center;
     float radius;
     Color color;
     float angularSpeed; // degree
-    struct Circle *nextCirclePtr;
+    struct Circle *next;
 }Circle;
 
-// Used inline for just reformatting
-static inline void DrawCircleOP(Circle circle) { DrawCircleV(circle.center, circle.radius, circle.color); }
-
 // Negative (-) values for CCW, Positive (+) values for CW
-// Can be done with pointers, but structs are not much big
 Vector2 RotatePoint(Vector2 ref, Vector2 point, float deg);
-Circle RotateCircle(Circle center, Circle circle, float deg);
 
-
+// Used inline for just reformatting
+static inline void DrawCircleOP(Circle* circle) { DrawCircleV(circle->center, circle->radius, circle->color); }
+static inline void RotateCircle(Circle* ref, Circle* circle, float deg) { circle->center = RotatePoint(ref->center, circle->center, deg); }
+static inline void MoveCircle(Circle* circle, Vector2 pos) { circle->center = Vector2Add(circle->center, pos); }
 
 #endif
