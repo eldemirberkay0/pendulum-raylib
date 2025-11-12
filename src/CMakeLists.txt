@@ -7,4 +7,4 @@ target_include_directories(pendulum_raylib
     ../include
 )
 
-target_link_libraries(pendulum_raylib PRIVATE raylib m)
+target_link_libraries(pendulum_raylib PRIVATE raylib raygui m)

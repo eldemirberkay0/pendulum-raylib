@@ -2,7 +2,7 @@
 #include <math.h>
 #include "circle.h"
 
-Vector2 RotatePoint(Vector2 ref, Vector2 point, float deg)
+Vector2 RotatePoint(Vector2 point, Vector2 ref, float deg)
 {
     Vector2 tempPoint;
     deg *= DEG2RAD;

@@ -1,5 +1,8 @@
 #include <raylib.h>
+#define RAYGUI_IMPLEMENTATION
 #include "game.h"
+
+bool isPaused = false;
 
 int main()
 {
@@ -9,8 +12,9 @@ int main()
     
     while (!WindowShouldClose())
     {
+        if (IsKeyPressed(KEY_SPACE)) { isPaused = !isPaused; }
+        if (!isPaused) { UpdateGame(); }
         BeginDrawing();
-        UpdateGame();
         DrawGame();
         EndDrawing();
     }

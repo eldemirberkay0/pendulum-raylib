@@ -4,6 +4,7 @@
 #include "game.h"
 #include "circle.h"
 #include "random.h"
+#include "list_operations.h"
 
 Circle* headCircle;
 Circle* lastCircle;
@@ -20,16 +21,17 @@ void InitGame(void)
 void DrawGame(void)
 {
     ClearBackground(RAYWHITE);
-    
+    if (isLinesActive) { DrawLines(headCircle); }
+    DrawCircles(headCircle);
+    if (isPaused) { DrawText("PAUSED", SCREEN_WIDTH / 2 - 200, 150, 100, GREEN); }
 }
 
 void UpdateGame(void)
 {
+    UpdateCircles(headCircle);
     if (IsKeyPressed(KEY_A))
     {
-        Circle* newCircle = (Circle*)malloc(sizeof(Circle));
-        lastCircle->next = newCircle;
-        lastCircle = newCircle;
-        *newCircle = (Circle){(Vector2){SCREEN_WIDTH / 2, lastCircle->center.y + RandomFloat(-55, 55)}, RandomFloat(5, 20), RED, RandomFloat(-180, 180) * DEG2RAD, NULL};
+        AddCircle((Vector2){SCREEN_WIDTH / 2, lastCircle->center.y + RandomFloat(-50, 50)}, RandomFloat(5, 20), (Color){RandomFloat(0,255), RandomFloat(0,255), RandomFloat(0,255), 255}, RandomFloat(-180, 180) * DEG2RAD);
     }
+    if (IsKeyPressed(KEY_D)) { RemoveLastCircle(headCircle); }
 }

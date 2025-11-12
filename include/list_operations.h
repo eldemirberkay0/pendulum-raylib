@@ -6,5 +6,7 @@
 void DrawLines(Circle* circle);
 void DrawCircles(Circle* circle);
 void UpdateCircles(Circle* circle);
+void AddCircle(Vector2 center, float radius, Color color, float angularSpeed);
+void RemoveLastCircle(Circle* circle);
 
 #endif

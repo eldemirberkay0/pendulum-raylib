@@ -4,11 +4,13 @@
 #include "circle.h"
 
 #define WINDOW_TITLE "PENDULUM RAYLIB"
-#define SCREEN_WIDTH 1120
-#define SCREEN_HEIGHT 780
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 800
 #define TARGET_FPS 60
 
 extern Circle* lastCircle;
+extern Circle* headCircle;
+extern bool isPaused;
 
 void InitGame(void);
 void DrawGame(void);
