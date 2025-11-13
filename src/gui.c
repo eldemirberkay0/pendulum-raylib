@@ -1,0 +1,48 @@
+#include <raylib.h>
+#define RAYGUI_IMPLEMENTATION
+#include <raygui.h>
+#include "circle.h"
+#include "game.h"
+#include "gui.h"
+#include "list_operations.h"
+#include "random.h"
+
+Circle* guiCircle;
+float newLength = 10;
+bool isLinesActive = 1;
+Camera2D camera = { 0 };
+bool isPaused;
+
+void InitGUI(void)
+{
+    camera.zoom = 1;
+    camera.offset = (Vector2){SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
+    camera.target = (Vector2){SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
+    guiCircle = (Circle*)malloc(sizeof(Circle));
+    *guiCircle = (Circle){(Vector2){SCREEN_WIDTH / 2, SCREEN_WIDTH / 2 + 10}, 10, RED, 60, NULL};
+}
+
+void DrawGUI(void)
+{
+    GuiGroupBox((Rectangle){10, 10, 300, 500}, "Circle Menu");
+    GuiSlider((Rectangle){100, 20, 125, 15}, "Radius", TextFormat("%.1f", guiCircle->radius), &guiCircle->radius, MIN_RADIUS, MAX_RADIUS);
+    GuiSlider((Rectangle){100, 40, 125, 15}, "Rod Length", TextFormat("%.1f", newLength), &newLength, MIN_ROD_LENGTH, MAX_ROD_LENGTH);
+    GuiSlider((Rectangle){100, 60, 125, 15}, "Angular Speed", TextFormat("%.1f", guiCircle->angularSpeed), &guiCircle->angularSpeed, MIN_ANGULAR_SPEED, MAX_ANGULAR_SPEED);
+    GuiColorPicker((Rectangle){55, 85, 150, 100}, "Color", &guiCircle->color);
+    //GuiCheckBox((Rectangle){50, 70, 20, 20}, "sada", &isLinesActive);
+
+    GuiSlider((Rectangle){50, 475, 100, 15}, "Zoom", TextFormat("%.1f", camera.zoom), &camera.zoom, MIN_ZOOM, MAX_ZOOM);
+    if (isPaused) { DrawText("PAUSED", SCREEN_WIDTH / 2 - 200, 150, 100, GREEN); }
+    
+}
+
+void UpdateGUI(void)
+{
+    if (IsKeyPressed(KEY_SPACE)) { isPaused = !isPaused; }
+    camera.zoom += GetMouseWheelMove()*0.05f;
+    if (camera.zoom > MAX_ZOOM) { camera.zoom = MAX_ZOOM; }
+    else if (camera.zoom < MIN_ZOOM) { camera.zoom = MIN_ZOOM; }
+    if (GuiButton((Rectangle){75, 200, 100, 20}, "Add Circle")) { AddCircle((Vector2){lastCircle->center.x, lastCircle->center.y + newLength}, guiCircle->radius, guiCircle->color, guiCircle->angularSpeed); }
+    if (GuiButton((Rectangle){75, 225, 100, 20}, "Add Random Circle")) { AddCircle((Vector2){SCREEN_WIDTH / 2, lastCircle->center.y + RandomFloat(-50, 50)}, RandomFloat(5, 20), (Color){RandomFloat(0,255), RandomFloat(0,255), RandomFloat(0,255), 255}, RandomFloat(-360, 360)); }
+    
+}

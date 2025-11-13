@@ -4,8 +4,8 @@
 #include "circle.h"
 
 #define WINDOW_TITLE "PENDULUM RAYLIB"
-#define SCREEN_WIDTH 1200
-#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 1440
+#define SCREEN_HEIGHT 810
 #define TARGET_FPS 60
 
 extern Circle* lastCircle;

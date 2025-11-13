@@ -15,7 +15,6 @@ if(NOT raylib_FOUND)
     FetchContent_MakeAvailable(raylib) 
 endif()
 
-find_package(raygui CONFIG QUIET)
 if(NOT raygui_FOUND)
     message("Downloading raygui from git... (This part may few seconds depending on internet speed)")
     include(FetchContent)
@@ -25,5 +24,11 @@ if(NOT raygui_FOUND)
     )
     FetchContent_MakeAvailable(raygui) 
 endif()
+
+add_library(raygui INTERFACE)
+
+target_include_directories(raygui INTERFACE 
+    ${raygui_SOURCE_DIR}/src
+)
 
 add_subdirectory(src)
