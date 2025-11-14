@@ -52,13 +52,13 @@ void AddRandomCircle(void)
 {
     Circle* newCircle = (Circle*)malloc(sizeof(Circle));
     float rodLength, radius;
-    while (radius + lastCircle->radius > rodLength)
+    while (radius + lastCircle->radius > rodLength - 5)
     {
-        radius = RandomFloat(MIN_RADIUS, MAX_RADIUS);
-        rodLength = RandomFloat(MIN_ROD_LENGTH, MAX_ROD_LENGTH);
+        radius = RandomFloat(5, 25);
+        rodLength = RandomFloat(1, 100);
     }
     newLength = rodLength;
-    *newCircle = (Circle){(Vector2){lastCircle->center.x + rodLength, lastCircle->center.y}, radius, (Color){RandomFloat(0,255), RandomFloat(0,255), RandomFloat(0,255), 255}, RandomFloat(MIN_ANGULAR_SPEED, MAX_ANGULAR_SPEED), NULL}; 
+    *newCircle = (Circle){(Vector2){lastCircle->center.x + rodLength, lastCircle->center.y}, radius, (Color){RandomFloat(0,255), RandomFloat(0,255), RandomFloat(0,255), 255}, RandomFloat(-180, 180), NULL}; 
     guiCircle = newCircle;
     lastCircle->next = newCircle;
     lastCircle = newCircle;
