@@ -33,8 +33,8 @@ void UpdateCircles(Circle* circle)
     while (circle->next != NULL)
     {
         Vector2 oldPos = circle->next->center;
-        RotateCircle(circle->next, circle, circle->next->angularSpeed);
         MoveCircle(circle->next, deltaPos);
+        RotateCircle(circle->next, circle, circle->next->angularSpeed * 1 / GetFPS());
         deltaPos = Vector2Subtract(circle->next->center, oldPos);
         circle = circle->next;
     }
@@ -59,7 +59,9 @@ void AddRandomCircle(void)
     }
     newLength = rodLength;
     *newCircle = (Circle){(Vector2){lastCircle->center.x + rodLength, lastCircle->center.y}, radius, (Color){RandomFloat(0,255), RandomFloat(0,255), RandomFloat(0,255), 255}, RandomFloat(-180, 180), NULL}; 
-    guiCircle = newCircle;
+    guiRadius = newCircle->radius;
+    guiColor = newCircle->color;
+    guiAngularSpeed = newCircle->angularSpeed;
     lastCircle->next = newCircle;
     lastCircle = newCircle;
 }

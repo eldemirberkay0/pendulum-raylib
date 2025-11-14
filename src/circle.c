@@ -6,7 +6,6 @@ Vector2 RotatePoint(Vector2 point, Vector2 ref, float deg)
 {
     Vector2 tempPoint;
     deg = deg * DEG2RAD;
-    deg = deg * DEG2RAD;
     tempPoint.x = ref.x + ((point.x - ref.x) * cos(deg)) - ((point.y - ref.y) * sin(deg));
     tempPoint.y = ref.y + ((point.x - ref.x) * sin(deg)) + ((point.y - ref.y) * cos(deg));
     return tempPoint;

@@ -13,7 +13,9 @@
 #define MIN_ZOOM 0.1
 #define MAX_ZOOM 5
 
-extern Circle* guiCircle;
+extern float guiRadius;
+extern float guiAngularSpeed;
+extern Color guiColor;
 extern float newLength;
 extern bool isLinesActive;
 extern Camera2D camera;
