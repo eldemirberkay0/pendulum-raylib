@@ -29,3 +29,4 @@ target_include_directories(raygui INTERFACE
 )
 
 add_subdirectory(src)
+add_subdirectory(external/nativefiledialog-extended)

@@ -14,6 +14,7 @@ void DrawCircles(Circle* circle)
     while (circle != NULL)
     {
         DrawCircleOP(circle);
+        if (isOutlineActive) { DrawRing(circle->center, circle->radius - 1, circle->radius, 0, 360, (circle->radius / 1.5) + 5, BLACK); }
         circle = circle->next;
     }
 }
@@ -22,7 +23,7 @@ void DrawLines(Circle* circle)
 {
     while (circle->next != NULL)
     {
-        DrawLineV(circle->center, circle->next->center, GRAY);
+        DrawLineV(circle->center, circle->next->center, BLACK);
         circle = circle->next;
     }
 }
@@ -52,12 +53,12 @@ void AddRandomCircle(void)
 {
     Circle* newCircle = (Circle*)malloc(sizeof(Circle));
     float rodLength, radius;
-    while (radius + lastCircle->radius > rodLength - 5)
+    while (radius + lastCircle->radius > rodLength + 1)
     {
         radius = RandomFloat(5, 25);
         rodLength = RandomFloat(1, 100);
     }
-    newLength = rodLength;
+    guiRodLength = rodLength;
     *newCircle = (Circle){(Vector2){lastCircle->center.x + rodLength, lastCircle->center.y}, radius, (Color){RandomFloat(0,255), RandomFloat(0,255), RandomFloat(0,255), 255}, RandomFloat(-180, 180), NULL}; 
     guiRadius = newCircle->radius;
     guiColor = newCircle->color;

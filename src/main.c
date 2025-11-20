@@ -9,7 +9,7 @@ int main()
     InitGame();
     
     while (!WindowShouldClose())
-    {   
+    {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         BeginMode2D(camera);

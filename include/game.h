@@ -6,7 +6,7 @@
 #define WINDOW_TITLE "PENDULUM RAYLIB"
 #define SCREEN_WIDTH 1440
 #define SCREEN_HEIGHT 810
-#define TARGET_FPS 60
+#define TARGET_FPS 144
 
 extern Circle* lastCircle;
 extern Circle* headCircle;
