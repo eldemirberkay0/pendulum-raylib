@@ -7,6 +7,7 @@
 #include "list_operations.h"
 #include "random.h"
 #include "nfd.h"
+#include "save.h"
 
 float guiRadius = 5;
 float guiAngularSpeed = 0;
@@ -36,7 +37,6 @@ void DrawGUI(void)
     GuiLine((Rectangle){25, 325, 275, 1}, "Save/Load");
     GuiSlider((Rectangle){50, 475, 100, 15}, "Zoom", TextFormat("%.1f", camera.zoom), &camera.zoom, MIN_ZOOM, MAX_ZOOM);
     if (isPaused) { DrawText("PAUSED", SCREEN_WIDTH / 2 - 200, 150, 100, GREEN); }
-
 }
 
 void UpdateGUI(void)
@@ -58,25 +58,35 @@ void UpdateGUI(void)
         nfdsavedialogu8args_t args = {0};
         args.filterList = filters;
         args.filterCount = 1;
-        args.defaultPath = GetApplicationDirectory();
+        args.defaultPath = NULL;
         args.defaultName = "save";
         nfdresult_t result = NFD_SaveDialogU8_With(&outPath, &args);
         if (result == NFD_OKAY)
         {
-            puts("Success!");
-            puts(outPath);
+            Save(outPath);
             NFD_FreePathU8(outPath);
         }
-        else if (result == NFD_CANCEL)
-        {
-            puts("User pressed cancel.");
-        }
-        else 
-        {
-            printf("Error: %s\n", NFD_GetError());
-        }
-
+        else if (result == NFD_CANCEL) { printf("User pressed cancel."); }
+        else { printf("Error: %s\n", NFD_GetError()); }
         NFD_Quit();
     }
-
+    if (GuiButton((Rectangle){130, 350, 100, 20}, "Load")) 
+    {
+        nfdchar_t *outPath = NULL;
+        const char *defaultStartPath = GetApplicationDirectory(); 
+        nfdopendialogu8args_t args = {0};
+        nfdu8filteritem_t filters[1] = { { "Save Files", "json" }};
+        args.defaultPath = NULL;
+        args.filterList = filters;
+        args.filterCount = 1;
+        nfdresult_t result = NFD_OpenDialogU8_With(&outPath, &args);
+        if (result == NFD_OKAY) 
+        {
+            while (lastCircle != headCircle) { RemoveLastCircle(headCircle); } // Remove all circles
+            Load(outPath);
+            NFD_FreePathU8(outPath);
+        } 
+        else if (result == NFD_CANCEL) { printf("User pressed cancel."); }
+        else { printf("Error: %s\n", NFD_GetError()); }
+    }
 }

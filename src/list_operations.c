@@ -35,7 +35,9 @@ void UpdateCircles(Circle* circle)
     {
         Vector2 oldPos = circle->next->center;
         MoveCircle(circle->next, deltaPos);
-        RotateCircle(circle->next, circle, circle->next->angularSpeed * 1 / GetFPS());
+        float deltaTime = GetFrameTime();
+        if (deltaTime > 0.02) { deltaTime = 0.02; }
+        RotateCircle(circle->next, circle, circle->next->angularSpeed * deltaTime);
         deltaPos = Vector2Subtract(circle->next->center, oldPos);
         circle = circle->next;
     }

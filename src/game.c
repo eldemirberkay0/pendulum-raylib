@@ -6,7 +6,6 @@
 #include "random.h"
 #include "list_operations.h"
 #include "gui.h"
-#include "save.h"
 
 Circle* headCircle;
 Circle* lastCircle;
@@ -14,7 +13,6 @@ Circle* lastCircle;
 void InitGame(void)
 {
     InitRandomSeed();
-    CheckSaveDirectory(GetApplicationDirectory());
     InitGUI();
     headCircle = (Circle*)malloc(sizeof(Circle));
     lastCircle = headCircle;

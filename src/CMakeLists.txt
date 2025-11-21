@@ -1,6 +1,6 @@
 file(GLOB SOURCES "*.c")
 
-add_executable(pendulum_raylib ${SOURCES} ../external/cJSON/cJSON.c ../external/file_util/file_util.c)
+add_executable(pendulum_raylib ${SOURCES} ../external/cJSON/cJSON.c)
 
 target_include_directories(pendulum_raylib 
     PRIVATE 

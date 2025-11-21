@@ -3,7 +3,7 @@
 
 #include "circle.h"
 
-#define WINDOW_TITLE "PENDULUM RAYLIB"
+#define WINDOW_TITLE "pendulum_raylib"
 #define SCREEN_WIDTH 1440
 #define SCREEN_HEIGHT 810
 #define TARGET_FPS 144

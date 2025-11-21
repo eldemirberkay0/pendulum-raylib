@@ -7,7 +7,7 @@ int main()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
     SetTargetFPS(TARGET_FPS);
     InitGame();
-    
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
