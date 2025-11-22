@@ -57,7 +57,7 @@ void AddRandomCircle(void)
     float rodLength, radius;
     while (radius + lastCircle->radius > rodLength + 1)
     {
-        radius = RandomFloat(5, 25);
+        radius = RandomFloat(5, 50);
         rodLength = RandomFloat(1, 100);
     }
     guiRodLength = rodLength;
