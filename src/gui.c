@@ -73,7 +73,7 @@ void UpdateGUI(void)
     }
     if (GuiButton((Rectangle){130, 350, 100, 20}, "Load")) 
     {
-        nfdchar_t *outPath = NULL;
+        nfdchar_t *outPath;
         const char *defaultStartPath = GetApplicationDirectory(); 
         nfdopendialogu8args_t args = {0};
         nfdu8filteritem_t filters[1] = { { "Save Files", "json" }};
