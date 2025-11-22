@@ -63,6 +63,7 @@ void UpdateGUI(void)
         nfdresult_t result = NFD_SaveDialogU8_With(&outPath, &args);
         if (result == NFD_OKAY)
         {
+            printf("-----------------------------------\n");
             Save(outPath);
             NFD_FreePathU8(outPath);
         }
@@ -83,6 +84,7 @@ void UpdateGUI(void)
         if (result == NFD_OKAY) 
         {
             while (lastCircle != headCircle) { RemoveLastCircle(headCircle); } // Remove all circles
+            printf("-----------------------------------\n");
             Load(outPath);
             NFD_FreePathU8(outPath);
         } 

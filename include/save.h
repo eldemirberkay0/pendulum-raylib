@@ -9,5 +9,6 @@ void Save(const char* path);
 char* CreateJSON(Circle* headCircle, bool isLineActive, bool isOutlineActive);
 cJSON* CreateCirlceObject(Circle* circle);
 void Load(const char* path);
+Circle* LoadCircleObject(cJSON* circle);
 
 #endif
