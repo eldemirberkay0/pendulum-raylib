@@ -16,7 +16,7 @@ Note: Save file format is  **JSON** format. There are some example saves in /sav
 ## How to Compile
 ### Prerequisites
 * CMake
-* A build system (make, ninja)
+* A build system (make, ninja etc.)
 * Any C compiler
 ***
 
@@ -30,7 +30,7 @@ If you have a UNIX system or a bash installed to your Windows you can just do,
 cd pendulum-raylib
 bash build.sh
 ```
-And it will compile the project and open the .exe file.
+And it will compile the project and open the compiled program.
 Other compile options without the build.sh:
 
 ### Windows
