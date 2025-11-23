@@ -1,6 +1,17 @@
 # Pendulum Raylib
-A basic multi-arm-pendulum like simulation written in C with Raylib.
-CMake script automatically downloads raylib and links all the libraries to the main program.
+A basic pendulum like simulation written in C with Raylib. All circles are connected to each other with a solid line and rotating at a fixed angular speed around previous ones.
+
+## Features
+* **GUI Control Panel:** Add/Remove circles using the buttons in the control panel GUI. You can add circles with spesific or random parameters like radius, rod length, angular speed and color
+
+* **Zooming Controls:** Use the mouse wheel (or the gui slider) to zoom in/zoom out
+
+* **Pause:** Press **"Space"** to pause/unpause the game
+
+### My Favourite Feature: Save/Load System
+If you created a good-looking pendulum pattern and  don't want to lose it, you can save it to anywhere you want in your computer with the **"Save"** button. Then, you can load your save files with the **"Load"** button and continue to work on it or just watch the scene.
+
+Note: Save file format is  **JSON** format. There are some example saves in /saves directory.
 
 ## How to Compile
 ### Prerequisites
@@ -8,7 +19,8 @@ CMake script automatically downloads raylib and links all the libraries to the m
 * A build system (make, ninja)
 * Any C compiler
 ***
-First, clone the repo
+
+Firstly, clone the repo
 ```
 git clone https://github.com/eldemirberkay0/pendulum-raylib.git
 ```
@@ -28,7 +40,7 @@ mkdir build
 cd build
 cmake ..
 cmake --build .
-pendulum_raylib.exe
+.\pendulum_raylib.exe
 ```
 
 ### Linux (Debian/Ubuntu)
@@ -51,8 +63,8 @@ mkdir build
 cd build
 cmake ..
 cmake --build .
-find build -name pendulum_raylib -type f -perm +111 -print -exec {} \;
+./pendulum_raylib
 ```
 
-## How to Use Project
-![Project View](https://drive.google.com/file/d/19fq9Tb3EdR_JuYyI111BNgK2DBWH4I9Y/view?usp=drive_link)
+*** 
+*CMake script automatically downloads raylib and links all the libraries to the main program.*
