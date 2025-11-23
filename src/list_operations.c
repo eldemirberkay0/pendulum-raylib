@@ -8,13 +8,14 @@
 #include "gui.h"
 
 Vector2 deltaPos;
+int circleCount = 0;
 
 void DrawCircles(Circle* circle)
 {
     while (circle != NULL)
     {
         DrawCircleOP(circle);
-        if (isOutlineActive) { DrawRing(circle->center, circle->radius - 1, circle->radius, 0, 360, (circle->radius / 1.5) + 5, BLACK); }
+        if (isOutlineActive) { DrawRing(circle->center, circle->radius - 1.2, circle->radius, 0, 360, (circle->radius / 1.5) + 5, BLACK); }
         circle = circle->next;
     }
 }
@@ -36,7 +37,7 @@ void UpdateCircles(Circle* circle)
         Vector2 oldPos = circle->next->center;
         MoveCircle(circle->next, deltaPos);
         float deltaTime = GetFrameTime();
-        if (deltaTime > 0.02) { deltaTime = 0.02; }
+        if (deltaTime > 0.0333) { deltaTime = 0.0333; }
         RotateCircle(circle->next, circle, circle->next->angularSpeed * deltaTime);
         deltaPos = Vector2Subtract(circle->next->center, oldPos);
         circle = circle->next;
@@ -49,13 +50,14 @@ void AddCircle(Vector2 center, float radius, Color color, float angularSpeed)
     *newCircle = (Circle){center, radius, color, angularSpeed, NULL};
     lastCircle->next = newCircle;
     lastCircle = newCircle;
+    circleCount++;
 }
 
 void AddRandomCircle(void)
 {
     Circle* newCircle = (Circle*)malloc(sizeof(Circle));
     float rodLength, radius;
-    while (radius + lastCircle->radius > rodLength + 1)
+    while (radius + lastCircle->radius > rodLength + 0.5 || radius == lastCircle->radius)
     {
         radius = RandomFloat(5, 50);
         rodLength = RandomFloat(1, 100);
@@ -67,6 +69,7 @@ void AddRandomCircle(void)
     guiAngularSpeed = newCircle->angularSpeed;
     lastCircle->next = newCircle;
     lastCircle = newCircle;
+    circleCount++;
 }
 
 void RemoveLastCircle(Circle* circle)
@@ -76,4 +79,5 @@ void RemoveLastCircle(Circle* circle)
     circle->next = NULL;
     free(lastCircle);
     lastCircle = circle;
+    circleCount--;
 }

@@ -21,7 +21,7 @@ char* CreateJSON(Circle* headCircle, bool isLineActive, bool isOutlineActive)
         return NULL;
     }
 
-    Circle* currentCircle = headCircle;
+    Circle* currentCircle = headCircle->next;
     while (currentCircle != NULL) 
     {
         cJSON* circleObject = CreateCirlceObject(currentCircle);
@@ -82,6 +82,7 @@ void Load(const char* path)
         Circle* newCircle = LoadCircleObject(circleObject);
         lastCircle->next = newCircle;
         lastCircle = lastCircle->next;
+        circleCount++;
     }
 }
 

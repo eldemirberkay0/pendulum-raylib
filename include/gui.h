@@ -10,7 +10,7 @@
 #define MAX_ROD_LENGTH 200
 #define MIN_ANGULAR_SPEED -720
 #define MAX_ANGULAR_SPEED 720
-#define MIN_ZOOM 0.5
+#define MIN_ZOOM 0.1
 #define MAX_ZOOM 5
 
 extern float guiRadius;

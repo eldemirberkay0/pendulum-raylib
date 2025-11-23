@@ -3,19 +3,6 @@
 	"isOutlineActive":	false,
 	"circles":	[{
 			"center":	{
-				"x":	720,
-				"y":	405
-			},
-			"color":	{
-				"r":	0,
-				"g":	0,
-				"b":	0,
-				"a":	255
-			},
-			"radius":	5,
-			"angularSpeed":	0
-		}, {
-			"center":	{
 				"x":	527.13311767578125,
 				"y":	457.94613647460938
 			},

@@ -35,8 +35,12 @@ void DrawGUI(void)
     GuiCheckBox((Rectangle){200, 200, 20, 20}, "Lines", &isLineActive);
     GuiCheckBox((Rectangle){200, 230, 20, 20}, "Outlines", &isOutlineActive);
     GuiLine((Rectangle){25, 325, 275, 1}, "Save/Load");
+    GuiLine((Rectangle){25, 385, 275, 1}, "Overall Info");
     GuiSlider((Rectangle){50, 475, 100, 15}, "Zoom", TextFormat("%.1f", camera.zoom), &camera.zoom, MIN_ZOOM, MAX_ZOOM);
     if (isPaused) { DrawText("PAUSED", SCREEN_WIDTH / 2 - 200, 150, 100, GREEN); }
+    DrawText("Press [SPACE] to pause", 1285, 20, 10, GRAY);
+    DrawFPS(1325, 40);
+    DrawText(TextFormat("%s%i", "Circles: ", circleCount), 25, 400, 20, LIME);
 }
 
 void UpdateGUI(void)
@@ -46,12 +50,14 @@ void UpdateGUI(void)
     camera.zoom += GetMouseWheelMove()*0.05f;
     if (camera.zoom > MAX_ZOOM) { camera.zoom = MAX_ZOOM; }
     else if (camera.zoom < MIN_ZOOM) { camera.zoom = MIN_ZOOM; }
-    if (GuiButton((Rectangle){60, 200, 100, 20}, "Add Circle")) { AddCircle((Vector2){lastCircle->center.x + guiRodLength, lastCircle->center.y}, guiRadius, guiColor, guiAngularSpeed); }
-    if (GuiButton((Rectangle){60, 225, 100, 20}, "Add Random Circle")) { AddRandomCircle(); }
-    if (GuiButton((Rectangle){60, 250, 100, 20}, "Remove Circle")) { RemoveLastCircle(headCircle); }
-    if (GuiButton((Rectangle){60, 275, 100, 20}, "Remove 10 Circle")) { for (int i = 0; i < 10; i++) { RemoveLastCircle(headCircle); }}
-    if (GuiButton((Rectangle){25, 350, 100, 20}, "Save")) 
-    { 
+    if (GuiButton((Rectangle){60, 190, 110, 20}, "Add Circle")) { AddCircle((Vector2){lastCircle->center.x + guiRodLength, lastCircle->center.y}, guiRadius, guiColor, guiAngularSpeed); }
+    if (GuiButton((Rectangle){60, 215, 110, 20}, "Add Random Circle")) { AddRandomCircle(); }
+    if (GuiButton((Rectangle){60, 240, 110, 20}, "Add 10 Random Circle")) { for (int i = 0; i < 10; i++) { AddRandomCircle(); }}
+    if (GuiButton((Rectangle){60, 265, 110, 20}, "Remove Circle")) { RemoveLastCircle(headCircle); }
+    if (GuiButton((Rectangle){60, 290, 110, 20}, "Remove 10 Circle")) { for (int i = 0; i < 10; i++) { RemoveLastCircle(headCircle); }}
+    if (GuiButton((Rectangle){165, 400, 100, 20}, "Clear Circles")) { while (lastCircle != headCircle) { RemoveLastCircle(headCircle); }} // Remove all circles
+    if (GuiButton((Rectangle){25, 345, 100, 20}, "Save")) 
+    {
         NFD_Init();
         nfdu8char_t *outPath;
         nfdu8filteritem_t filters[1] = { { "Save Files", "json" }};
@@ -71,7 +77,7 @@ void UpdateGUI(void)
         else { printf("Error: %s\n", NFD_GetError()); }
         NFD_Quit();
     }
-    if (GuiButton((Rectangle){130, 350, 100, 20}, "Load")) 
+    if (GuiButton((Rectangle){130, 345, 100, 20}, "Load")) 
     {
         nfdchar_t *outPath;
         const char *defaultStartPath = GetApplicationDirectory(); 
@@ -87,7 +93,7 @@ void UpdateGUI(void)
             printf("-----------------------------------\n");
             Load(outPath);
             NFD_FreePathU8(outPath);
-        } 
+        }
         else if (result == NFD_CANCEL) { printf("User pressed cancel."); }
         else { printf("Error: %s\n", NFD_GetError()); }
     }
