@@ -2,7 +2,7 @@
 A basic pendulum like simulation written in C with Raylib. All circles are connected to each other with a solid line and rotating at a fixed angular speed around previous ones.
 
 ## Features
-* **GUI Control Panel:** Add/Remove circles using the buttons in the control panel GUI. You can add circles with spesific or random parameters like radius, rod length, angular speed and color
+* **GUI Control Panel:** Add/Remove circles using the buttons in the control panel GUI. You can add circles with spesific or random parameters like radius, rod length, angular speed and color. Also control the visibility of lines and outlines.
 
 * **Zooming Controls:** Use the mouse wheel (or the gui slider) to zoom in/zoom out
 
