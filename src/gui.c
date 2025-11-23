@@ -59,12 +59,12 @@ void UpdateGUI(void)
     if (GuiButton((Rectangle){25, 345, 100, 20}, "Save")) 
     {
         NFD_Init();
-        nfdu8char_t *outPath;
+        nfdu8char_t *outPath = NULL;
         nfdu8filteritem_t filters[1] = { { "Save Files", "json" }};
         nfdsavedialogu8args_t args = {0};
         args.filterList = filters;
         args.filterCount = 1;
-        args.defaultPath = NULL;
+        args.defaultPath = GetWorkingDirectory();
         args.defaultName = "save";
         nfdresult_t result = NFD_SaveDialogU8_With(&outPath, &args);
         if (result == NFD_OKAY)
@@ -79,11 +79,12 @@ void UpdateGUI(void)
     }
     if (GuiButton((Rectangle){130, 345, 100, 20}, "Load")) 
     {
-        nfdchar_t *outPath;
-        const char *defaultStartPath = GetApplicationDirectory(); 
+    	NFD_Init();
+        nfdu8char_t *outPath = GetWorkingDirectory();
+        const char *defaultStartPath = GetWorkingDirectory();
         nfdopendialogu8args_t args = {0};
         nfdu8filteritem_t filters[1] = { { "Save Files", "json" }};
-        args.defaultPath = NULL;
+        args.defaultPath = GetWorkingDirectory();
         args.filterList = filters;
         args.filterCount = 1;
         nfdresult_t result = NFD_OpenDialogU8_With(&outPath, &args);
@@ -96,5 +97,6 @@ void UpdateGUI(void)
         }
         else if (result == NFD_CANCEL) { printf("User pressed cancel."); }
         else { printf("Error: %s\n", NFD_GetError()); }
+        NFD_Quit();
     }
 }
