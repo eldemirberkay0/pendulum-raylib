@@ -9,7 +9,7 @@
 
 Vector2 deltaPos;
 int circleCount = 0;
-extern int segments;
+int segments;
 
 void DrawCircles(Circle* circle)
 {
@@ -17,15 +17,18 @@ void DrawCircles(Circle* circle)
     {
         if (circleCount > 500) 
         {
-            segments = (circle->radius / 5 / circleCount * 500) + 5;
-            if (isOutlineActive) { DrawCircleSector(circle->center, circle->radius, 0, 360, segments, BLACK); }
-            DrawCircleOP(circle);
+            segments = (circle->radius / 4) + 8;
+            if (isOutlineActive) 
+            { 
+                DrawCircleSector(circle->center, circle->radius, 0, 360, segments, BLACK);
+                DrawCircleSector(circle->center, circle->radius - 1, 0, 360, segments, circle->color);
+            }
+            else { DrawCircleSector(circle->center, circle->radius, 0, 360, segments, circle->color); }
         }
         else
         {
-            if (isOutlineActive) { DrawCircleV(circle->center, circle->radius + 1, BLACK); }
-            DrawCircleV(circle->center, circle->radius, circle->color);
-            // if (isOutlineActive) { DrawRing(circle->center, circle->radius - 1, circle->radius, 0, 360, (circle->radius / 1.5) + 5, BLACK); }
+            DrawCircleOP(circle);
+            if (isOutlineActive) { DrawRing(circle->center, circle->radius - 1, circle->radius, 0, 360, circle->radius / 1.5 + 5, BLACK); }
         }
         circle = circle->next;
     }
