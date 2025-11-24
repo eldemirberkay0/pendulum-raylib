@@ -3,6 +3,8 @@
 
 #include "circle.h"
 
+extern int segments;
+
 void DrawLines(Circle* circle);
 void DrawCircles(Circle* circle);
 void UpdateCircles(Circle* circle);
