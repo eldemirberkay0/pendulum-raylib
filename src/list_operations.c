@@ -17,7 +17,7 @@ void DrawCircles(Circle* circle)
     {
         if (circleCount > 500) 
         {
-            segments = (circle->radius / 4) + 8;
+            segments = (circle->radius / 3.85) + 10;
             if (isOutlineActive) 
             { 
                 DrawCircleSector(circle->center, circle->radius, 0, 360, segments, BLACK);
