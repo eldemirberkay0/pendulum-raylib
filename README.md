@@ -1,7 +1,7 @@
 # Pendulum Raylib
 A basic pendulum like simulation written in C with Raylib. All circles are connected to each other with a solid line and rotating at a fixed angular speed around previous ones.
 <p align="left">
-  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/99734746/530539974-118184ff-37cb-4500-b319-ba538fab50df.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251228T110243Z&X-Amz-Expires=300&X-Amz-Signature=663d414c315611e68a374e6a2caef84f5a3c2f74addde6cf095497716e7453c1&X-Amz-SignedHeaders=host" width="50%" title="Pendulum Preview">
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/99734746/530541642-335945b7-dada-47a5-a767-8b0a2e54bc0c.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251228T112836Z&X-Amz-Expires=300&X-Amz-Signature=e8d6e43f1d60b05fdd30555df06ab6f4bed24215ecc2df73cd6a3d8b67a3be60&X-Amz-SignedHeaders=host" width="50%" title="Pendulum Preview">
 </p>
 
 ## Features
